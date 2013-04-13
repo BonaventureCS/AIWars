@@ -28,7 +28,7 @@ if (request.getParameter("postBack") != null) {
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>AI Wars - Sign up</title>
+    <title>AI Wars - Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="univFeed - campus news, without the bloat">
     <meta name="author" content="Brandon Kowalski, Oneirus Development">
@@ -104,28 +104,25 @@ if (request.getParameter("postBack") != null) {
         <ul class="nav nav-pills pull-right">
           <li><a href="index.jsp">home</a></li>
           
-          <li class="active"><a href="signup.jsp">sign up</a></li>
-          <li><a href="login.jsp">login</a></li>
+          <li><a href="signup.jsp">sign up</a></li>
+          <li class="active"><a href="login.jsp">login</a></li>
         </ul>
         <h3 class="muted">AI Wars<sub><small>&alpha;</small></sub></h3>
         
-        <% if (request.getParameter("e") != null) { %>
-<div class="alert alert-danger">
+        <% if (request.getParameter("c") != null) { %>
+<div class="alert alert-success">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Oops!</strong> Looks like something went wrong.
+  <strong>Woot!</strong> Your account has been created. You may now login.
 </div>
 <% } %>
       </div>
       <form class="form-signin" method="post" action="signup.jsp">
-        <h2 class="form-signin-heading centre">Join the Skirmish</h2>
-        <input type="hidden" name="postBack" value="register">
+        <h2 class="form-signin-heading centre">Return to Combat</h2>
+        <input type="hidden" name="postBack" value="signin">
         <input type="text" class="input-block-level" name="email" placeholder="Email address">
         <input type="password" class="input-block-level" name="password" placeholder="Password">
-        <input type="password" class="input-block-level" name="password2" placeholder="Confirm">
-         <input type="text" class="input-block-level" name="firstname" placeholder="First Name">
-          <input type="text" class="input-block-level" name="lastname" placeholder="Last Name">
 
-      <div class="centre"><button class="btn btn-large btn-primary" type="submit">Sign up</button></div>
+      <div class="centre"><button class="btn btn-large btn-primary" type="submit">Log in</button></div>
         
       </form>
 
