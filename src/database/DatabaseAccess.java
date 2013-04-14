@@ -59,7 +59,7 @@ public class DatabaseAccess {
 		return true;
 	}
 
-	public boolean Write(String dbTable, String baseQuery, List<String> values) {
+	public boolean Write(String baseQuery, List<String> values) {
 		try {
 
 			PreparedStatement prep = connection.prepareStatement(baseQuery);
@@ -80,13 +80,24 @@ public class DatabaseAccess {
 		return true;
 	}
 
-	public ResultSet Read(String query) {
+	public ResultSet Read(String baseQuery, List<?> values, int mode) {
 		ResultSet rs;
 		try {
-			Statement statement = this.connection.createStatement();
-			statement.setQueryTimeout(30); // set timeout to 30 sec.
 
-			rs = statement.executeQuery(query);
+			PreparedStatement prep = connection.prepareStatement(baseQuery);
+
+			if (mode == 0) {
+				for (int i = 0; i < values.size(); i++) {
+					prep.setString(i + 1, (String) values.get(i));
+				}
+			}
+			else if (mode == 1) {
+				for (int i = 0; i < values.size(); i++) {
+					prep.setInt(i + 1, (Integer) values.get(i));
+				}
+			}
+
+			rs = prep.executeQuery();
 
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());

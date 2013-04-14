@@ -1,24 +1,28 @@
+<%@page import="containers.Account"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="database.UserAccess"%>
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
 <% 
 
 if (request.getParameter("postBack") != null) {
-	String firstname = request.getParameter("firstname");
-	String lastname = request.getParameter("lastname");
-	String email = request.getParameter("email");
-	String password = request.getParameter("password");
-	
-	boolean created = UserAccess.Create(email, password, firstname, lastname);
+	ResultSet rs = UserAccess.Login(request.getParameter("email"), request.getParameter("password")); 
+	Account a = null;
+	boolean logged = false;
+	while (rs.next()) {
+		a = new Account(rs.getInt("id"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email"), 
+				rs.getString("biography"), rs.getString("tagline"), rs.getString("school"), rs.getString("image"));
+		logged = true;
+	}
 	
 	response.setStatus(response.SC_MOVED_TEMPORARILY);
-	if (created) {
-		
-		response.setHeader("Location", "login.jsp?c"); 
+	
+	if (logged && a != null) {
+		session.setAttribute("playerAccount", a);
+		response.setHeader("Location", "home.jsp"); 
 	}
 	else {
-		
-		response.setHeader("Location", "signup.jsp?e");
+		response.setHeader("Location", "login.jsp?e");
 	}
 }
 
@@ -30,9 +34,6 @@ if (request.getParameter("postBack") != null) {
     <meta charset="utf-8">
     <title>AI Wars - Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="univFeed - campus news, without the bloat">
-    <meta name="author" content="Brandon Kowalski, Oneirus Development">
-
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -115,9 +116,15 @@ if (request.getParameter("postBack") != null) {
   <strong>Woot!</strong> Your account has been created. You may now login.
 </div>
 <% } %>
+       <% if (request.getParameter("e") != null) { %>
+<div class="alert alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Oh No!</strong> Email or Password is invalid. Try again please?
+</div>
+<% } %>
       </div>
-      <form class="form-signin" method="post" action="signup.jsp">
-        <h2 class="form-signin-heading centre">Return to Combat</h2>
+      <form class="form-signin" method="post" action="login.jsp">
+        <h2 class="form-signin-heading centre">Return to Combat.</h2>
         <input type="hidden" name="postBack" value="signin">
         <input type="text" class="input-block-level" name="email" placeholder="Email address">
         <input type="password" class="input-block-level" name="password" placeholder="Password">

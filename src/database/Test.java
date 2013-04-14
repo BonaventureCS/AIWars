@@ -1,17 +1,28 @@
 package database;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Test {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		
-		boolean bool = UserAccess.Create("email2", "pass", "Brandon", "Kowalski"); 
+		ResultSet rs = UserAccess.Login("brandonkowalski@kwall.org", "brandon"); 
 		
-		if(bool) {
-			System.out.println("Account created!");
+		boolean logged = false;
+		while (rs.next()) {
+			System.out.println(rs.getString("firstname") + " " + rs.getString("lastname"));
+			logged = true;
+		}
+		
+		if (logged) {
+			System.out.println("Logged in");
 		}
 		else {
-			System.err.println("Creation failed.");
+			System.out.println("Invalid email or pass");
 		}
+		
+		
 		
 	}
 

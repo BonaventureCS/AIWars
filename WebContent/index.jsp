@@ -5,9 +5,6 @@
     <meta charset="utf-8">
     <title>AI Wars</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="univFeed - campus news, without the bloat">
-    <meta name="author" content="Brandon Kowalski, Oneirus Development">
-
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
@@ -60,11 +57,6 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link rel="shortcut icon" href="ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
   </head>
 
   <body>
@@ -85,8 +77,8 @@
 
       <div class="jumbotron">
         <h1>Play games while learning code.</h1>
-        <p class="lead">Play classic games against other players and their AI. Code your own AI to compete, and conquer the competition and learning programming.</p>
-        <a class="btn btn-large btn-success" href="signup.jsp">Join the Skirmish</a>
+        <p class="lead">Play classic games against other programmer's AI. Code your own AI to compete and conquer the competition while learning programming.</p>
+        <a class="btn btn-large btn-danger" href="signup.jsp">Join the Skirmish</a>
       </div>
 
       <hr>

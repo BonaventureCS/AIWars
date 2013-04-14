@@ -30,9 +30,6 @@ if (request.getParameter("postBack") != null) {
     <meta charset="utf-8">
     <title>AI Wars - Sign up</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="univFeed - campus news, without the bloat">
-    <meta name="author" content="Brandon Kowalski, Oneirus Development">
-
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -117,7 +114,7 @@ if (request.getParameter("postBack") != null) {
 <% } %>
       </div>
       <form class="form-signin" method="post" action="signup.jsp">
-        <h2 class="form-signin-heading centre">Join the Skirmish</h2>
+        <h2 class="form-signin-heading centre">Join the Skirmish.</h2>
         <input type="hidden" name="postBack" value="register">
         <input type="text" class="input-block-level" name="email" placeholder="Email address">
         <input type="password" class="input-block-level" name="password" placeholder="Password">
